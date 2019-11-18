@@ -1,0 +1,42 @@
+{
+  "name": "kmp-router",
+  "version": "0.3.0",
+  "description": "Express middleware for keeping routes and controllers seperated",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kss14/yaml-router.git"
+  },
+  "keywords": [
+    "kmp",
+    "express",
+    "yaml",
+    "routing",
+    "controller",
+    "node"
+  ],
+  "author": "kss14",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kss14/yaml-router.git/issues"
+  },
+  "dependencies": {
+    "express-reverse": "~0.3.1",
+    "js-yaml": "~3.3.0",
+    "node.extend": "~1.1",
+    "path": "^0.11.14"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "chai-http": "^1.0.0",
+    "mocha": "^2.2.4",
+    "express": "~4.12.3",
+    "twig": "~0.8.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/kss14"
+  }
+}
