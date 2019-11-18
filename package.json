@@ -1,0 +1,73 @@
+{
+  "_args": [
+    [
+      "@kss14/kmp-router@1.0.0",
+      "/home/kss14/WORKSPACE/KMP_Framework"
+    ]
+  ],
+  "_from": "@kss14/kmp-router@1.0.0",
+  "_id": "@kss14/kmp-router@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-4ZxEUCBe3SKhlNA1syrOMCLpOTr9awbJJbsovFszRg7A2XtybSs7EhxWZaz8IlcrO+I4OkAgtALWK55RjJZaEw==",
+  "_location": "/@kss14/kmp-router",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@kss14/kmp-router@1.0.0",
+    "name": "@kss14/kmp-router",
+    "escapedName": "@kss14%2fkmp-router",
+    "scope": "@kss14",
+    "rawSpec": "1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "1.0.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@kss14/kmp-router/-/kmp-router-1.0.0.tgz",
+  "_spec": "1.0.0",
+  "_where": "/home/kss14/WORKSPACE/KMP_Framework",
+  "author": {
+    "name": "kss14"
+  },
+  "bugs": {
+    "url": "https://github.com/kss14/kmp-router.git/issues"
+  },
+  "dependencies": {
+    "express-reverse": "~0.3.1",
+    "js-yaml": "~3.3.0",
+    "node.extend": "~1.1",
+    "path": "^0.11.14"
+  },
+  "description": " Middleware that manages the application's routes through a yaml file that attaches routes to controllers and calls the desired action. ",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "express": "~4.12.3",
+    "twig": "~0.8.2"
+  },
+  "homepage": "https://github.com/kss14/kmp-router#readme",
+  "keywords": [
+    "kmp",
+    "express",
+    "yaml",
+    "routing",
+    "controller",
+    "node"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "@kss14/kmp-router",
+  "types": "index.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/kss14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kss14/kmp-router.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}
