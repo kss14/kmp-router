@@ -21,10 +21,10 @@ export namespace KmpTools {
 
         /**
          * Constructor that initialize all routes when this class is instenced
-         * @param app Express.Application
+         * @param app any
          * @param options OptionsKmpRoutes
          */
-        constructor(app: Express.Application, options: OptionsKmpRoutes) {
+        constructor(app: any, options: OptionsKmpRoutes) {
             options = extend(true, {
                 routingFile: __dirname + '/../../app/config/routes.yml',
                 controllerPath: __dirname + '/../../app/controllers',
@@ -40,11 +40,11 @@ export namespace KmpTools {
 
         /**
          * Initialize all routes of application
-         * @param app Express.Application
+         * @param app any
          * @param options OptionsKmpRoutes
          * @private
          */
-        private initRoutes = (app: Express.Application, options: OptionsKmpRoutes) => {
+        private initRoutes = (app: any, options: OptionsKmpRoutes) => {
             options.controllerPath.forEach((dir) => {
                 console.log(dir)
                 fs.readdirSync(dir).forEach((file: string) => {
@@ -65,11 +65,11 @@ export namespace KmpTools {
         /**
          * Load Yaml config file and build all routes of application
          * @param file string
-         * @param app Express.Application
+         * @param app any
          * @param prefix string|null
          * @private
          */
-        private parseYML = (file: string, app: Express.Application, prefix: string | null) => {
+        private parseYML = (file: string, app: any, prefix: string | null) => {
             prefix = prefix || ''
             let routesYaml = yaml.safeLoad(fs.readFileSync(file, 'utf8'))
 
@@ -90,15 +90,13 @@ export namespace KmpTools {
                 }
 
                 obj.methods.forEach((method: string) => {
-                    // @ts-ignore
-                    const c = bundle.split('.').reduce((o: object, i: string) => o[i], this.controllers[bundle])
-                    // @ts-ignore
-                    const actionFunction = new c()[action]
+                    const controllerClass:any = bundle.split('.').reduce((o: any, i: string ) =>  {if(o !==undefined) return o[i]}, this.controllers[bundle])
+                    const actionFunction = new controllerClass()[action]
 
                     if (!actionFunction) {
                         throw new Error('No action found for ' + obj.controller)
                     }
-                    //@ts-ignore
+
                     app[method.toLowerCase()](key + '_' + method, prefix + obj.pattern, actionFunction)
                 })
             }
@@ -106,20 +104,19 @@ export namespace KmpTools {
 
         /**
          * Build the complete class name in string
-         * @param object  { [key: string]: object; }
+         * @param object  { [key: string]: object; } | any
          * @param pathObject Array<string>
          * @return Array<string>
          * @private
          */
-        private depthOf(object: { [key: string]: object; }, pathObject: Array<string>): Array<string> {
+        private depthOf(object: { [key: string]: object; } | any, pathObject: Array<string>): Array<string> {
             for (let key in object) {
                 if (!object.hasOwnProperty(key)) {
                     continue
                 }
 
-                if (typeof object[key] == 'object') {
+                if (typeof object[key] === 'object') {
                     pathObject.push(key)
-                    //@ts-ignore
                     this.depthOf(object[key], pathObject)
                 }
             }
