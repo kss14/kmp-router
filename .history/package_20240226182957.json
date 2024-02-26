@@ -1,12 +1,12 @@
 {
   "_args": [
     [
-      "@kss14/kmp-router@1.1.1",
+      "@kss14/kmp-router@1.1.0",
       "/home/kss14/WORKSPACE/KMP_Framework"
     ]
   ],
-  "_from": "@kss14/kmp-router@1.1.1",
-  "_id": "@kss14/kmp-router@1.1.1",
+  "_from": "@kss14/kmp-router@1.1.0",
+  "_id": "@kss14/kmp-router@1.1.0",
   "_inBundle": false,
   "_integrity": "sha512-4ZxEUCBe3SKhlNA1syrOMCLpOTr9awbJJbsovFszRg7A2XtybSs7EhxWZaz8IlcrO+I4OkAgtALWK55RjJZaEw==",
   "_location": "/@kss14/kmp-router",
@@ -14,19 +14,19 @@
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@kss14/kmp-router@1.1.1",
+    "raw": "@kss14/kmp-router@1.1.0",
     "name": "@kss14/kmp-router",
     "escapedName": "@kss14%2fkmp-router",
     "scope": "@kss14",
-    "rawSpec": "1.1.1",
+    "rawSpec": "1.1.0",
     "saveSpec": null,
-    "fetchSpec": "1.1.1"
+    "fetchSpec": "1.1.0"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@kss14/kmp-router/-/kmp-router-1.1.1.tgz",
-  "_spec": "1.1.1",
+  "_resolved": "https://registry.npmjs.org/@kss14/kmp-router/-/kmp-router-1.1.0.tgz",
+  "_spec": "1.1.0",
   "_where": "/home/kss14/WORKSPACE/KMP_Framework",
   "author": {
     "name": "kss14"
@@ -78,5 +78,5 @@
   "scripts": {
     "test": "jest"
   },
-  "version": "1.1.1"
+  "version": "1.1.0"
 }

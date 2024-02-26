@@ -9,11 +9,11 @@ const path = require('path');
 var KmpTools;
 (function (KmpTools) {
     /**
-     *KmpTools manage routes
+     * KmpTools manage routes
      */
     class Routes {
         /**
-         * Constructor that initialize all routes when this class is instenced
+         * Constructor that initialize all routes when this class is instanced
          * @param app Express.Application
          * @param options OptionsKmpRoutes
          */
@@ -28,18 +28,18 @@ var KmpTools;
              */
             this.initRoutes = (app, options) => {
                 options.controllerPath.forEach((dir) => {
-                    console.log(dir);
                     fs.readdirSync(dir).forEach((file) => {
-                        if (file.indexOf('.js') !== -1) {
+                        const ext = path.extname(file);
+                        if (file.indexOf(ext) !== -1) {
                             const name = file.substr(0, file.indexOf('.'));
-                            const controllerCurrent = require(dir + '/' + file);
+                            const controllerCurrent = require(path.join(dir, file));
                             this.pathObjectTab = [];
                             const pathObjectString = this.depthOf(controllerCurrent, this.pathObjectTab).join('.');
                             this.controllers[pathObjectString + '.' + name] = controllerCurrent;
                         }
                     });
                 });
-                //Load YAML
+                // Load YAML
                 this.parseYML(options.routingFile, app, null);
             };
             /**
@@ -58,26 +58,30 @@ var KmpTools;
                         this.parseYML(path.dirname(file) + '/' + obj.resource, app, obj.prefix);
                         continue;
                     }
-                    const split = obj.controller.split(':'), bundle = split.slice(0, -1).join('.') + 'Controller', action = split.slice(-1) + 'Action';
+                    const split = obj.controller.split(':');
+                    const bundle = split.slice(0, -1).join('.') + 'Controller';
+                    const action = split.slice(-1)[0] + 'Action';
                     if (!obj.methods) {
                         throw new Error('No methods defined for controller ' + obj.controller);
                     }
                     obj.methods.forEach((method) => {
-                        // @ts-ignore
-                        const c = bundle.split('.').reduce((o, i) => o[i], this.controllers[bundle]);
-                        // @ts-ignore
-                        const actionFunction = new c()[action];
+                        const controllerClass = bundle.split('.').reduce((o, i) => {
+                            if (o !== undefined)
+                                return o[i];
+                        }, this.controllers[bundle]);
+                        const actionFunction = new controllerClass()[action];
                         if (!actionFunction) {
                             throw new Error('No action found for ' + obj.controller);
                         }
-                        //@ts-ignore
-                        app[method.toLowerCase()](key + '_' + method, prefix + obj.pattern, actionFunction);
+                        const httpMethod = method.toLowerCase();
+                        console.log(httpMethod, key + '_' + method, prefix + obj.pattern, actionFunction);
+                        app[httpMethod](key + '_' + method, prefix + obj.pattern, actionFunction);
                     });
                 }
             };
             options = extend(true, {
-                routingFile: __dirname + '/../../app/config/routes.yml',
-                controllerPath: __dirname + '/../../app/controllers',
+                routingFile: path.join(__dirname, '/../../app/config/routes.yml'),
+                controllerPath: [path.join(__dirname, '/../../app/controllers')],
                 helperName: 'url'
             }, options || {});
             expressReverse(app, {
@@ -87,9 +91,9 @@ var KmpTools;
         }
         /**
          * Build the complete class name in string
-         * @param object  { [key: string]: object; }
-         * @param pathObject Array<string>
-         * @return Array<string>
+         * @param object { [key: string]: any; } | any
+         * @param pathObject string[]
+         * @return string[]
          * @private
          */
         depthOf(object, pathObject) {
@@ -97,9 +101,8 @@ var KmpTools;
                 if (!object.hasOwnProperty(key)) {
                     continue;
                 }
-                if (typeof object[key] == 'object') {
+                if (typeof object[key] === 'object') {
                     pathObject.push(key);
-                    //@ts-ignore
                     this.depthOf(object[key], pathObject);
                 }
             }
@@ -107,4 +110,4 @@ var KmpTools;
         }
     }
     KmpTools.Routes = Routes;
-})(KmpTools = exports.KmpTools || (exports.KmpTools = {}));
+})(KmpTools || (exports.KmpTools = KmpTools = {}));

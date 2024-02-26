@@ -11,6 +11,7 @@
         "**/*.ts",
     ],
     "exclude": [
+        "./history"
         "./dist",
         "./node_modules",
         "./test"
