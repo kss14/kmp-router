@@ -1,0 +1,4 @@
+route1:
+  controller: "Test:Test:action"
+  methods: ["GET"]
+  pattern: "/"
