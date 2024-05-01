@@ -12,6 +12,31 @@ export namespace KmpTools {
     helperName: string;
   }
 
+  export class Controller {
+    getFolderPaths(dir: string, srcDir:string = "src", controlerDir: string ="Controller", folderPaths: string[] = []) {
+      const items = fs.readdirSync(dir);
+      items.forEach((item: string) => {
+        const itemPath = path.join(dir, item);
+
+        if (fs.statSync(itemPath).isDirectory()) {
+          const containsControllers = fs.existsSync(
+            path.join(itemPath, controlerDir)
+          );
+
+          if (containsControllers) {
+            folderPaths.push(path.relative(srcDir, itemPath) + "/");
+          }
+
+          if (!containsControllers) {
+            this.getFolderPaths(itemPath, srcDir, controlerDir, folderPaths);
+          }
+        }
+      });
+
+      return folderPaths;
+    }
+  }
+
   /**
    * KmpTools manage routes
    */
@@ -113,7 +138,16 @@ export namespace KmpTools {
               if (o !== undefined) return o[i];
             }, this.controllers[bundle]);
 
-          const actionFunction = new controllerClass()[action];
+          const  container = app.get('container');
+          let actionFunction;
+
+          if(container){
+            let regex = /\.(\w+)Controller$/;
+            let bundleService = bundle.replace(regex, '.Controller.$1Controller');
+            actionFunction = container.get(bundleService)[action];
+          } else {
+            actionFunction = new controllerClass()[action];
+          }
 
           if (!actionFunction) {
             throw new Error("No action found for " + obj.controller);
@@ -126,15 +160,11 @@ export namespace KmpTools {
             | "put"
             | "patch"
             | "options"
-            | "connect";
-          console.log(
-            httpMethod,
-            key + "_" + method,
-            prefix + obj.pattern,
-            actionFunction
-          );
+            | "connect"
+          
           app[httpMethod](
             key + "_" + method,
+            //@ts-ignore
             prefix + obj.pattern,
             actionFunction
           );

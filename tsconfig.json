@@ -1,11 +1,19 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
+        "target": "es2022",
+        "module": "CommonJs",
+        "moduleResolution": "node",
         "allowJs": true,
-        "outDir": "dist/",
         "strict": true,
         "esModuleInterop": true,
+        "baseUrl": ".",
+        "removeComments": true,
+        "outDir": "dist/",
+        "paths": {
+            "@api/*": ["./test_2/src/Api/*"],
+            "@app/*": ["./test_2/src/App/*"],
+            "@root/*": ["./test_2/src/*"]
+          }
     },
     "include": [
         "**/*.ts",
@@ -13,6 +21,7 @@
     "exclude": [
         "./dist",
         "./node_modules",
-        "./test"
-    ]
+        "./test_1",
+        "./test_2"
+    ],
 }

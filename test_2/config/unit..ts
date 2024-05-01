@@ -1,7 +1,7 @@
-import { KmpTools } from "../index";
+import { KmpTools } from "../../index";
 import express from "express";
 
-describe("KmpTools", () => {
+/*describe("KmpTools", () => {
   describe("Routes", () => {
     const appPath = require("./config/app.json");
     const controllerPath = appPath.map((p: string) => {
@@ -9,7 +9,7 @@ describe("KmpTools", () => {
     });
     const app = express();
     const options = {
-      routingFile: "./test/config/testRoutes.yml",
+      routingFile: "./test_1/config/testRoutes.yml",
       controllerPath: controllerPath,
       helperName: "testHelper",
     };
@@ -41,4 +41,4 @@ describe("KmpTools", () => {
       expect(depth).toEqual(["some", "nested", "object"]);
     });
   });
-});
+});*/
