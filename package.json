@@ -1,15 +1,68 @@
 {
-  "name": "kmp-router",
-  "version": "0.3.0",
-  "description": "Express middleware for keeping routes and controllers seperated",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
+  "_args": [
+    [
+      "@kss14/kmp-router@1.1.4"
+    ]
+  ],
+  "_from": "@kss14/kmp-router@1.1.4",
+  "_id": "@kss14/kmp-router@1.1.4",
+  "_inBundle": false,
+  "_integrity": "sha512-4ZxEUCBe3SKhlNA1syrOMCLpOTr9awbJJbsovFszRg7A2XtybSs7EhxWZaz8IlcrO+I4OkAgtALWK55RjJZaEw==",
+  "_location": "/@kss14/kmp-router",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@kss14/kmp-router@1.1.4",
+    "name": "@kss14/kmp-router",
+    "escapedName": "@kss14%2fkmp-router",
+    "scope": "@kss14",
+    "rawSpec": "1.1.4",
+    "saveSpec": null,
+    "fetchSpec": "1.1.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/kss14/yaml-router.git"
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@kss14/kmp-router/-/kmp-router-1.1.4.tgz",
+  "_spec": "1.1.4",
+  "author": {
+    "name": "kss14"
   },
+  "bugs": {
+    "url": "https://github.com/kss14/kmp-router.git/issues"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.19.5",
+    "body-parser": "^1.20.2",
+    "express-reverse": "~0.3.1",
+    "global": "^4.4.0",
+    "js-yaml": "~3.3.0",
+    "kmp-di": "^1.0.10",
+    "node.extend": "~1.1",
+    "npm": "^10.7.0",
+    "path": "^0.11.14",
+    "safe-buffer": "^5.2.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "description": " Middleware that manages the application's routes through a yaml file that attaches routes to controllers and calls the desired action. ",
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^20.11.20",
+    "@types/supertest": "^6.0.2",
+    "babel-jest": "^29.7.0",
+    "esbuild": "^0.20.2",
+    "express": "~4.12.4",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4",
+    "twig": "~0.8.2"
+  },
+  "homepage": "https://github.com/kss14/kmp-router#readme",
   "keywords": [
     "kmp",
     "express",
@@ -18,25 +71,24 @@
     "controller",
     "node"
   ],
-  "author": "kss14",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kss14/yaml-router.git/issues"
-  },
-  "dependencies": {
-    "express-reverse": "~0.3.1",
-    "js-yaml": "~3.3.0",
-    "node.extend": "~1.1",
-    "path": "^0.11.14"
-  },
-  "devDependencies": {
-    "chai": "^2.3.0",
-    "chai-http": "^1.0.0",
-    "mocha": "^2.2.4",
-    "express": "~4.12.3",
-    "twig": "~0.8.2"
-  },
+  "main": "dist/index.js",
+  "name": "@kss14/kmp-router",
+  "types": "index.ts",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/kss14"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kss14/kmp-router.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc && esbuild ./dist/index.js --minify --outfile=./dist/index.js --allow-overwrite",
+    "minify": "esbuild index.ts --minify --outfile=./index-minified.ts",
+    "start_test_1": "ts-node ./test_1/server.ts",
+    "start_test_2": "ts-node ./test_2/server.ts"
+  },
+
+  "version": "2.0.0"
 }
