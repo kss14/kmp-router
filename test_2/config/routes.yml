@@ -1,0 +1,39 @@
+home:
+  controller: "App.Main:Home:index"
+  methods: ["GET"]
+  pattern: "/"
+
+login:
+  controller: "App.Main:Auth:login"
+  methods: ["GET", "POST"]
+  pattern: "/login"
+
+logout:
+  controller: "App.Main:Auth:logout"
+  methods: ["GET"]
+  pattern: "/logout"
+
+subscribe:
+  controller: "App.Main:Home:subscribe"
+  methods: ["GET"]
+  pattern: "/subscribe"
+
+profile:
+  controller: "App.Main:Home:profile"
+  methods: ["GET"]
+  pattern: "/profile"
+
+ok:
+  controller: "App.Oky:Ok:index"
+  methods: ["GET"]
+  pattern: "/ok"
+
+api_ban:
+  controller: "Api:User:ban"
+  methods: ["GET"]
+  pattern: "/api/ban/:id"
+
+api_resurrected:
+  controller: "Api:User:resurrected"
+  methods: ["GET"]
+  pattern: "/api/resurrected/:id"

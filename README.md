@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # KMP Router middleware for Express
 
 This middleware is designed to work like the Symfony2 model of seperate routes and controllers.
@@ -78,3 +79,6 @@ The controller `main:about` will be parsed so the `aboutController` in `/app/con
 
 Multiple .yml routing files can be loaded using the resource/prefix syntax, see code example above.
 
+=======
+Kmp-Tools
+>>>>>>> 648545e0bceca1bf414843f3469efe954f98d5e4
