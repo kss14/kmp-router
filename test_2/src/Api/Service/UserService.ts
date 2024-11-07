@@ -31,6 +31,7 @@ export namespace Api.Service {
 
       if (user) {
         user.activated = true;
+        this._UtilsService.ConnectionsBan = this._UtilsService.ConnectionsBan.filter((UserId) => UserId !== userId);
 
         return await this._JsonService.addUserUpadted(user)
       }
