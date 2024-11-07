@@ -77,4 +77,3 @@ module.exports = function() {
 The controller `main:about` will be parsed so the `aboutController` in `/app/controllers/main.js` is loaded.
 
 Multiple .yml routing files can be loaded using the resource/prefix syntax, see code example above.
-
